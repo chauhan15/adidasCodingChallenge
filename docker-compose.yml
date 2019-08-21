@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+    rabbitmq:
+        image: "rabbitmq:3-management"
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        expose:
+            - "5672"
+        labels:
+            NAME: "rabbitmq"
+        hostname: rabbit
+        network_mode: host
+
+    notification-service:
+        image: chauhan/notification-service:0.0.1-SNAPSHOT
+        ports:
+            - "8200:8200"
+        expose:
+            - "8200"
+        labels:
+            NAME: "notification-service"
+        hostname: notification-service
+        network_mode: host
+
+    subscribe-service:
+        image: chauhan/subscribe-service:0.0.1-SNAPSHOT
+        ports:
+            - "8100:8100"
+        expose:
+            - "8100"
+        labels:
+            NAME: "subscribe-service"
+        hostname: subscribe-service
+        network_mode: host
+
+    newsletter-service:
+        image: chauhan/newsletter-service:0.0.1-SNAPSHOT
+        ports:
+            - "8000:8000"
+        expose:
+            - "8000"
+        labels:
+            NAME: "newsletter-service"
+        hostname: newsletter-service
+        network_mode: host
